@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.venv
+venv/
+env/
+
+# Database
+*.db
+*.sqlite3
+
+# Environment variables
+.env
+.env.*
+
+# Alembic
+# (keep alembic migrations but not the db)
+
+# Node / Next.js
+ttg-frontend/node_modules/
+ttg-frontend/.next/
+ttg-frontend/out/
+ttg-frontend/.env.local
+ttg-frontend/.env.development.local
+ttg-frontend/.env.test.local
+ttg-frontend/.env.production.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp

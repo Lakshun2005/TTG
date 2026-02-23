@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tail:*)",
+      "Bash(cd:*)",
+      "Bash(cd /c/Users/Lakshunbalaji/Documents/projects/TTG/ttg-backend && python -c \"from app.main import app; print\\('Import OK'\\)\" 2>&1)",
+      "Bash(sleep 4 && curl -s http://localhost:8000/health 2>&1)",
+      "Bash(python:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}
