@@ -5,6 +5,9 @@ from sqlalchemy.orm import Session
 from app.scheduler.domain_builder import Variable, build_domains
 from app.scheduler.csp_solver import CSPSolver
 from app.models.timetable import TimetableGeneration, TimetableEntry
+from app.logger import get_logger
+
+logger = get_logger(__name__)
 
 Assignment = Dict[str, Tuple[int, int]]
 
@@ -23,20 +26,23 @@ def persist_solution(db: Session, generation_id: str, variables: List[Variable],
         )
         db.add(entry)
     db.commit()
+    logger.info(f"Persisted {len(assignment)} timetable entries for generation {generation_id[:8]}")
 
 
-def run_generation(db: Session, generation_id: str):
-    """Full pipeline: build domains → solve CSP → persist or mark failed."""
+def run_generation(db: Session, generation_id: str, algorithm: str = "csp"):
+    """Full pipeline: build domains → solve CSP/GA → persist or mark failed."""
     generation = db.query(TimetableGeneration).filter(
         TimetableGeneration.id == generation_id
     ).first()
 
     if not generation:
+        logger.error(f"Generation {generation_id} not found")
         return
 
     try:
         generation.status = "running"
         db.commit()
+        logger.info(f"Generation {generation_id[:8]} started (algorithm={algorithm})")
 
         variables, domains = build_domains(db)
 
@@ -48,6 +54,7 @@ def run_generation(db: Session, generation_id: str):
             )
             generation.completed_at = datetime.utcnow()
             db.commit()
+            logger.warning(f"Generation {generation_id[:8]} failed: no variables")
             return
 
         for var in variables:
@@ -55,20 +62,30 @@ def run_generation(db: Session, generation_id: str):
                 generation.status = "failed"
                 generation.error_message = (
                     f"No valid slots for subject_id={var.subject_id} in section_id={var.section_id}. "
-                    "Check faculty availability and ensure matching rooms exist."
+                    "Check faculty specialization and ensure matching rooms exist."
                 )
                 generation.completed_at = datetime.utcnow()
                 db.commit()
+                logger.warning(f"Generation {generation_id[:8]} failed: empty domain for {var.key()}")
                 return
 
-        solver = CSPSolver(variables, domains)
-        solution = solver.solve()
+        solution = None
+
+        if algorithm == "ga":
+            from app.scheduler.ga_solver import GeneticAlgorithmSolver
+            solver = GeneticAlgorithmSolver(variables, domains)
+            solution = solver.solve()
+            logger.info(f"GA solver finished for generation {generation_id[:8]}")
+        else:
+            solver = CSPSolver(variables, domains)
+            solution = solver.solve()
+            logger.info(f"CSP solver finished for generation {generation_id[:8]}")
 
         if solution is None:
             generation.status = "failed"
             generation.error_message = (
-                "No valid timetable found. Try: reducing faculty blocked slots, "
-                "adding more rooms, or reducing hours_per_week for subjects."
+                "No valid timetable found. Try: adding more rooms, "
+                "reducing hours_per_week for subjects, or checking faculty specializations."
             )
         else:
             persist_solution(db, generation_id, variables, solution)
@@ -79,6 +96,7 @@ def run_generation(db: Session, generation_id: str):
 
     except Exception as e:
         db.rollback()
+        logger.error(f"Generation {generation_id[:8]} exception: {e}", exc_info=True)
         generation = db.query(TimetableGeneration).filter(
             TimetableGeneration.id == generation_id
         ).first()

@@ -1,0 +1,198 @@
+[2026-03-04 22:46:10] INFO     app.crud.base — Created Faculty id=1
+[2026-03-04 22:46:10] INFO     app.crud.base — Updated Faculty id=1
+[2026-03-04 22:46:10] INFO     app.crud.base — Deleted Faculty id=1
+[2026-03-04 22:46:10] INFO     app.crud.base — Created Subject id=1
+[2026-03-04 22:46:10] INFO     app.crud.base — Updated Subject id=1
+[2026-03-04 22:46:10] INFO     app.crud.base — Deleted Subject id=1
+[2026-03-04 22:46:10] INFO     app.scheduler.timetable_builder — Generation 011e3f2f started (algorithm=csp)
+[2026-03-04 22:46:10] INFO     app.scheduler.timetable_builder — CSP solver finished for generation 011e3f2f
+[2026-03-04 22:46:10] INFO     app.scheduler.timetable_builder — Persisted 4 timetable entries for generation 011e3f2f
+[2026-03-04 22:52:40] INFO     app.scheduler.timetable_builder — Generation c6c006fe started (algorithm=csp)
+[2026-03-04 22:52:40] WARNING  app.scheduler.timetable_builder — Generation c6c006fe failed: no variables
+[2026-03-04 22:53:13] INFO     app.scheduler.timetable_builder — Generation bff9fe59 started (algorithm=csp)
+[2026-03-04 22:53:13] WARNING  app.scheduler.timetable_builder — Generation bff9fe59 failed: no variables
+[2026-03-04 22:53:23] INFO     app.scheduler.timetable_builder — Generation de67e3bc started (algorithm=ga)
+[2026-03-04 22:53:23] WARNING  app.scheduler.timetable_builder — Generation de67e3bc failed: no variables
+[2026-03-04 22:59:30] INFO     app.crud.base — Created Faculty id=1
+[2026-03-04 22:59:30] INFO     app.crud.base — Updated Faculty id=1
+[2026-03-04 22:59:30] INFO     app.crud.base — Deleted Faculty id=1
+[2026-03-04 22:59:30] INFO     app.crud.base — Created Subject id=1
+[2026-03-04 22:59:30] INFO     app.crud.base — Updated Subject id=1
+[2026-03-04 22:59:30] INFO     app.crud.base — Deleted Subject id=1
+[2026-03-04 22:59:30] INFO     app.scheduler.timetable_builder — Generation d8470151 started (algorithm=csp)
+[2026-03-04 22:59:30] INFO     app.scheduler.timetable_builder — CSP solver finished for generation d8470151
+[2026-03-04 22:59:30] INFO     app.scheduler.timetable_builder — Persisted 4 timetable entries for generation d8470151
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: No sections found. Add at least one section before generating.
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: No time slots found. Generate or add time slots first.
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: No rooms found. Add at least one room before generating.
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: No time slots found. Generate or add time slots first.
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: No rooms found. Add at least one room before generating.
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: No rooms found. Add at least one room before generating.
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: 1 assignment(s) have no faculty assigned. Each subject in a section must have a faculty member.
+[2026-03-04 22:59:30] INFO     app.validator — Pre-generation validation passed
+[2026-03-04 22:59:30] WARNING  app.validator — Validation: 1 subject(s) require a lab, but no lab rooms exist. Add at least one room of type 'lab'.
+[2026-03-04 22:59:30] INFO     app.scheduler.timetable_builder — Generation 66f7ea8c started (algorithm=csp)
+[2026-03-04 22:59:30] INFO     app.scheduler.timetable_builder — CSP solver finished for generation 66f7ea8c
+[2026-03-04 22:59:30] INFO     app.scheduler.timetable_builder — Persisted 2 timetable entries for generation 66f7ea8c
+[2026-03-04 22:59:30] INFO     app.scheduler.timetable_builder — Generation 19fb8f58 started (algorithm=csp)
+[2026-03-04 22:59:30] INFO     app.scheduler.timetable_builder — CSP solver finished for generation 19fb8f58
+[2026-03-04 22:59:30] INFO     app.scheduler.timetable_builder — Persisted 4 timetable entries for generation 19fb8f58
+[2026-03-04 22:59:30] INFO     app.scheduler.timetable_builder — Generation c6e6b68e started (algorithm=ga)
+[2026-03-04 22:59:31] INFO     app.scheduler.ga_solver — GA starting: 2 variables, pop=100, gens=500
+[2026-03-04 22:59:31] INFO     app.scheduler.ga_solver — GA found valid solution at generation 0 (fitness=20.0)
+[2026-03-04 22:59:31] INFO     app.scheduler.timetable_builder — GA solver finished for generation c6e6b68e
+[2026-03-04 22:59:31] INFO     app.scheduler.timetable_builder — Persisted 2 timetable entries for generation c6e6b68e
+[2026-03-04 22:59:31] INFO     app.scheduler.timetable_builder — Generation c606af9a started (algorithm=ga)
+[2026-03-04 22:59:31] INFO     app.scheduler.ga_solver — GA starting: 2 variables, pop=100, gens=500
+[2026-03-04 22:59:31] INFO     app.scheduler.ga_solver — GA found valid solution at generation 0 (fitness=20.0)
+[2026-03-04 22:59:31] INFO     app.scheduler.timetable_builder — GA solver finished for generation c606af9a
+[2026-03-04 22:59:31] INFO     app.scheduler.timetable_builder — Persisted 2 timetable entries for generation c606af9a
+[2026-03-04 22:59:31] INFO     app.scheduler.timetable_builder — Generation ebc2ce7f started (algorithm=csp)
+[2026-03-04 22:59:31] WARNING  app.scheduler.timetable_builder — Generation ebc2ce7f failed: no variables
+[2026-03-04 22:59:31] INFO     app.scheduler.timetable_builder — Generation 59d803cf started (algorithm=csp)
+[2026-03-04 22:59:31] WARNING  app.scheduler.timetable_builder — Generation 59d803cf failed: empty domain for 1_1_1_0
+[2026-03-04 23:00:19] INFO     app.crud.base — Created Faculty id=1
+[2026-03-04 23:00:19] INFO     app.crud.base — Updated Faculty id=1
+[2026-03-04 23:00:19] INFO     app.crud.base — Deleted Faculty id=1
+[2026-03-04 23:00:19] INFO     app.crud.base — Created Subject id=1
+[2026-03-04 23:00:19] INFO     app.crud.base — Updated Subject id=1
+[2026-03-04 23:00:19] INFO     app.crud.base — Deleted Subject id=1
+[2026-03-04 23:00:19] INFO     app.scheduler.timetable_builder — Generation 9931166d started (algorithm=csp)
+[2026-03-04 23:00:19] INFO     app.scheduler.timetable_builder — CSP solver finished for generation 9931166d
+[2026-03-04 23:00:19] INFO     app.scheduler.timetable_builder — Persisted 4 timetable entries for generation 9931166d
+[2026-03-04 23:00:19] WARNING  app.validator — Validation: No sections found. Add at least one section before generating.
+[2026-03-04 23:00:19] WARNING  app.validator — Validation: No time slots found. Generate or add time slots first.
+[2026-03-04 23:00:19] WARNING  app.validator — Validation: No rooms found. Add at least one room before generating.
+[2026-03-04 23:00:19] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 23:00:20] WARNING  app.validator — Validation: No time slots found. Generate or add time slots first.
+[2026-03-04 23:00:20] WARNING  app.validator — Validation: No rooms found. Add at least one room before generating.
+[2026-03-04 23:00:20] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 23:00:20] WARNING  app.validator — Validation: No rooms found. Add at least one room before generating.
+[2026-03-04 23:00:20] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 23:00:20] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 23:00:20] WARNING  app.validator — Validation: 1 assignment(s) have no faculty assigned. Each subject in a section must have a faculty member.
+[2026-03-04 23:00:20] INFO     app.validator — Pre-generation validation passed
+[2026-03-04 23:00:20] WARNING  app.validator — Validation: 1 subject(s) require a lab, but no lab rooms exist. Add at least one room of type 'lab'.
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — Generation f8064394 started (algorithm=csp)
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — CSP solver finished for generation f8064394
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — Persisted 2 timetable entries for generation f8064394
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — Generation b8aa000a started (algorithm=csp)
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — CSP solver finished for generation b8aa000a
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — Persisted 4 timetable entries for generation b8aa000a
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — Generation 33e2729c started (algorithm=ga)
+[2026-03-04 23:00:20] INFO     app.scheduler.ga_solver — GA starting: 2 variables, pop=100, gens=500
+[2026-03-04 23:00:20] INFO     app.scheduler.ga_solver — GA found valid solution at generation 0 (fitness=20.0)
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — GA solver finished for generation 33e2729c
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — Persisted 2 timetable entries for generation 33e2729c
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — Generation 7e9f1cc6 started (algorithm=ga)
+[2026-03-04 23:00:20] INFO     app.scheduler.ga_solver — GA starting: 2 variables, pop=100, gens=500
+[2026-03-04 23:00:20] INFO     app.scheduler.ga_solver — GA found valid solution at generation 0 (fitness=20.0)
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — GA solver finished for generation 7e9f1cc6
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — Persisted 2 timetable entries for generation 7e9f1cc6
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — Generation a76de371 started (algorithm=csp)
+[2026-03-04 23:00:20] WARNING  app.scheduler.timetable_builder — Generation a76de371 failed: no variables
+[2026-03-04 23:00:20] INFO     app.scheduler.timetable_builder — Generation 89dc6737 started (algorithm=csp)
+[2026-03-04 23:00:20] WARNING  app.scheduler.timetable_builder — Generation 89dc6737 failed: empty domain for 1_1_1_0
+[2026-03-04 23:05:28] ERROR    app.crud.base — Failed to create Timeslot: (sqlite3.IntegrityError) UNIQUE constraint failed: timeslots.day_of_week, timeslots.period_number
+[SQL: INSERT INTO timeslots (day_of_week, period_number, start_time, end_time) VALUES (?, ?, ?, ?)]
+[parameters: ('Monday', 1, '23:05:00.000000', '23:05:00.000000')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: timeslots.day_of_week, timeslots.period_number
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Lakshunbalaji\Documents\TTG\ttg-streamlit\app\crud\base.py", line 28, in create
+    db.commit()
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 2017, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 1302, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 1277, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 4341, in flush
+    self._flush(objects)
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 4476, in _flush
+    with util.safe_reraise():
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 4437, in _flush
+    flush_context.execute()
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\Lakshunbalaji\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: timeslots.day_of_week, timeslots.period_number
+[SQL: INSERT INTO timeslots (day_of_week, period_number, start_time, end_time) VALUES (?, ?, ?, ?)]
+[parameters: ('Monday', 1, '23:05:00.000000', '23:05:00.000000')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2026-03-04 23:05:52] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 23:06:11] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 23:18:11] INFO     app.validator — Pre-generation validation passed
+[2026-03-04 23:18:11] INFO     app.scheduler.timetable_builder — Generation 36766dee started (algorithm=csp)
+[2026-03-04 23:18:11] INFO     app.scheduler.timetable_builder — CSP solver finished for generation 36766dee
+[2026-03-04 23:18:11] INFO     app.scheduler.timetable_builder — Persisted 23 timetable entries for generation 36766dee
+[2026-03-04 23:18:44] INFO     app.validator — Pre-generation validation passed
+[2026-03-04 23:18:44] INFO     app.scheduler.timetable_builder — Generation 69db69a6 started (algorithm=ga)
+[2026-03-04 23:18:44] INFO     app.scheduler.ga_solver — GA starting: 23 variables, pop=100, gens=500
+[2026-03-04 23:18:44] DEBUG    app.scheduler.ga_solver — GA gen 0: best_fitness=-780
+[2026-03-04 23:18:44] INFO     app.scheduler.ga_solver — GA found valid solution at generation 6 (fitness=230.0)
+[2026-03-04 23:18:44] INFO     app.scheduler.timetable_builder — GA solver finished for generation 69db69a6
+[2026-03-04 23:18:44] INFO     app.scheduler.timetable_builder — Persisted 23 timetable entries for generation 69db69a6
+[2026-03-04 23:28:20] INFO     app.crud.base — Deleted Faculty id=6
+[2026-03-04 23:30:29] WARNING  app.validator — Validation: 1 assignment(s) have no faculty assigned. Each subject in a section must have a faculty member.
+[2026-03-04 23:30:29] WARNING  app.validator — Validation: Total hours needed (33) exceeds available time slots (30). Add more time slots or reduce subject hours.
+[2026-03-04 23:30:36] WARNING  app.validator — Validation: 1 assignment(s) have no faculty assigned. Each subject in a section must have a faculty member.
+[2026-03-04 23:30:36] WARNING  app.validator — Validation: Total hours needed (33) exceeds available time slots (30). Add more time slots or reduce subject hours.
+[2026-03-04 23:31:07] WARNING  app.validator — Validation: 1 assignment(s) have no faculty assigned. Each subject in a section must have a faculty member.
+[2026-03-04 23:31:07] WARNING  app.validator — Validation: Total hours needed (33) exceeds available time slots (30). Add more time slots or reduce subject hours.
+[2026-03-04 23:33:54] WARNING  app.validator — Validation: 1 assignment(s) have no faculty assigned. Each subject in a section must have a faculty member.
+[2026-03-04 23:33:54] WARNING  app.validator — Validation: Total hours needed (33) exceeds available time slots (30). Add more time slots or reduce subject hours.
+[2026-03-04 23:38:24] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 23:39:49] WARNING  app.validator — Validation: No subject-faculty assignments found. Assign subjects to sections first.
+[2026-03-04 23:41:43] INFO     app.validator — Pre-generation validation passed
+[2026-03-04 23:41:43] INFO     app.scheduler.timetable_builder — Generation 3e1f22b0 started (algorithm=csp)
+[2026-03-04 23:41:43] INFO     app.scheduler.timetable_builder — CSP solver finished for generation 3e1f22b0
+[2026-03-04 23:41:43] INFO     app.scheduler.timetable_builder — Persisted 4 timetable entries for generation 3e1f22b0

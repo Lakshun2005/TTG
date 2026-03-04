@@ -1,0 +1,40 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\Lakshunbalaji\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Lakshunbalaji\Documents\TTG\ttg-streamlit
+plugins: anyio-4.10.0, Faker-40.1.2, asyncio-1.3.0, cov-7.0.0, mock-3.15.1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 30 items
+
+tests/test_api.py::test_faculty_crud PASSED                              [  3%]
+tests/test_api.py::test_subject_crud PASSED                              [  6%]
+tests/test_conflict_detection.py::TestTeacherConflicts::test_same_faculty_same_timeslot_rejected PASSED [ 10%]
+tests/test_conflict_detection.py::TestTeacherConflicts::test_same_faculty_different_timeslot_accepted PASSED [ 13%]
+tests/test_conflict_detection.py::TestTeacherConflicts::test_different_faculty_same_timeslot_accepted PASSED [ 16%]
+tests/test_conflict_detection.py::TestRoomConflicts::test_same_room_same_timeslot_rejected PASSED [ 20%]
+tests/test_conflict_detection.py::TestRoomConflicts::test_same_room_different_timeslot_accepted PASSED [ 23%]
+tests/test_conflict_detection.py::TestSectionConflicts::test_same_section_same_timeslot_rejected PASSED [ 26%]
+tests/test_conflict_detection.py::TestSectionConflicts::test_same_section_different_timeslot_accepted PASSED [ 30%]
+tests/test_conflict_detection.py::TestDuplicateSubjectSlotConflicts::test_duplicate_subject_same_section_same_timeslot_rejected PASSED [ 33%]
+tests/test_conflict_detection.py::TestMultipleConflicts::test_no_conflict_in_full_assignment PASSED [ 36%]
+tests/test_conflict_detection.py::TestMultipleConflicts::test_conflict_with_second_assignment PASSED [ 40%]
+tests/test_flow.py::test_full_flow PASSED                                [ 43%]
+tests/test_input_validation.py::test_empty_database_fails PASSED         [ 46%]
+tests/test_input_validation.py::test_no_timeslots_fails PASSED           [ 50%]
+tests/test_input_validation.py::test_no_rooms_fails PASSED               [ 53%]
+tests/test_input_validation.py::test_no_assignments_fails PASSED         [ 56%]
+tests/test_input_validation.py::test_assignment_without_faculty_warns PASSED [ 60%]
+tests/test_input_validation.py::test_valid_data_passes PASSED            [ 63%]
+tests/test_input_validation.py::test_lab_subject_without_lab_room_fails PASSED [ 66%]
+tests/test_input_validation.py::test_duplicate_section_subject_rejected_by_db PASSED [ 70%]
+tests/test_scheduler.py::test_csp_produces_valid_timetable PASSED        [ 73%]
+tests/test_scheduler.py::test_csp_no_faculty_double_booking PASSED       [ 76%]
+tests/test_scheduler.py::test_ga_produces_valid_timetable PASSED         [ 80%]
+tests/test_scheduler.py::test_ga_no_room_double_booking PASSED           [ 83%]
+tests/test_scheduler.py::test_no_assignments_fails_gracefully PASSED     [ 86%]
+tests/test_scheduler.py::test_insufficient_rooms_fails PASSED            [ 90%]
+tests/test_solver.py::test_no_double_booking_faculty PASSED              [ 93%]
+tests/test_solver.py::test_no_double_booking_section PASSED              [ 96%]
+tests/test_solver.py::test_room_double_booking PASSED                    [100%]
+
+============================= 30 passed in 1.22s ==============================

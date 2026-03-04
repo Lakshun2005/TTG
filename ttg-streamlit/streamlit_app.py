@@ -35,6 +35,7 @@ from app.crud.timeslot import crud_timeslot
 from app.scheduler.timetable_builder import run_generation
 from app.export.pdf_exporter import generate_section_pdf, generate_faculty_pdf
 from app.export.excel_exporter import generate_full_excel
+from app.validator import validate_before_generation
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Page config
@@ -147,7 +148,9 @@ with st.sidebar:
     page_label = st.radio("Navigation", list(PAGES.keys()), label_visibility="collapsed")
     page = PAGES[page_label]
     st.markdown("---")
-    st.markdown("<p style='color:#64748b;font-size:.7rem'>Powered by CSP Solver · SQLite · Streamlit</p>", unsafe_allow_html=True)
+    debug_mode = st.checkbox("🐛 Debug Mode", value=False, help="Show detailed logs")
+    st.session_state["debug_mode"] = debug_mode
+    st.markdown("<p style='color:#64748b;font-size:.7rem'>Powered by CSP + GA Solver · SQLite · Streamlit</p>", unsafe_allow_html=True)
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -220,7 +223,6 @@ elif page == "faculty":
     db = get_session()
     try:
         faculty_list = crud_faculty.get_all(db)
-        timeslots    = db.query(Timeslot).order_by(Timeslot.day_of_week, Timeslot.period_number).all()
     finally:
         db.close()
 
@@ -229,17 +231,17 @@ elif page == "faculty":
         with st.form("add_faculty_form", clear_on_submit=True):
             c1, c2, c3, c4 = st.columns(4)
             name       = c1.text_input("Name*")
-            email      = c2.text_input("Email*")
+            spec       = c2.text_input("Subject Specialization*")
             dept       = c3.text_input("Department*")
             max_hours  = c4.number_input("Max hrs/week", 1, 40, 20)
             submitted  = st.form_submit_button("Add Faculty", type="primary")
             if submitted:
-                if not all([name, email, dept]):
-                    st.error("Name, email, and department are required.")
+                if not all([name, spec, dept]):
+                    st.error("Name, subject specialization, and department are required.")
                 else:
                     db2 = get_session()
                     try:
-                        crud_faculty.create(db2, {"name": name, "email": email, "department": dept, "max_hours_per_week": int(max_hours)})
+                        crud_faculty.create(db2, {"name": name, "subject_specialization": spec, "department": dept, "max_hours_per_week": int(max_hours)})
                         st.success(f"Faculty **{name}** added!")
                         st.rerun()
                     except Exception as e:
@@ -256,34 +258,25 @@ elif page == "faculty":
                 st.markdown(f"""
                 <div class="ttg-card">
                     <strong>{f.name}</strong> &nbsp;·&nbsp; <span style="color:#94a3b8">{f.department}</span><br>
-                    <small style="color:#64748b">{f.email} &nbsp;|&nbsp; Max {f.max_hours_per_week} hrs/week</small>
+                    <small style="color:#64748b">Specialization: {f.subject_specialization} &nbsp;|&nbsp; Max {f.max_hours_per_week} hrs/week</small>
                 </div>""", unsafe_allow_html=True)
 
-                col_av, col_del = st.columns([4, 1])
-                with col_av:
-                    if timeslots:
-                        db3 = get_session()
-                        try:
-                            blocked = crud_faculty.get_availability(db3, f.id)
-                        finally:
-                            db3.close()
-
-                        ts_options = {f"{ts.day_of_week} P{ts.period_number} ({fmt_time(ts.start_time)}-{fmt_time(ts.end_time)})": ts.id for ts in timeslots}
-                        blocked_labels = [lbl for lbl, tid in ts_options.items() if tid in blocked]
-                        new_blocked_labels = st.multiselect(
-                            f"🚫 Blocked slots for {f.name}",
-                            options=list(ts_options.keys()),
-                            default=blocked_labels,
-                            key=f"avail_{f.id}"
-                        )
-                        if st.button("💾 Save Availability", key=f"save_avail_{f.id}"):
-                            new_blocked_ids = [ts_options[lbl] for lbl in new_blocked_labels]
-                            db4 = get_session()
-                            try:
-                                crud_faculty.set_availability(db4, f.id, new_blocked_ids)
-                                st.success("Availability saved!")
-                            finally:
-                                db4.close()
+                col_edit, col_del = st.columns([1, 1])
+                with col_edit:
+                    with st.popover("✏️ Edit"):
+                        with st.form(f"edit_fac_{f.id}"):
+                            e_name  = st.text_input("Name", value=f.name)
+                            e_spec  = st.text_input("Specialization", value=f.subject_specialization)
+                            e_dept  = st.text_input("Department", value=f.department)
+                            e_hours = st.number_input("Max hrs/week", 1, 40, int(f.max_hours_per_week))
+                            if st.form_submit_button("Save"):
+                                db_edit = get_session()
+                                try:
+                                    crud_faculty.update(db_edit, f.id, {"name": e_name, "subject_specialization": e_spec, "department": e_dept, "max_hours_per_week": e_hours})
+                                    st.success("Updated!")
+                                    st.rerun()
+                                finally:
+                                    db_edit.close()
 
                 with col_del:
                     if st.button("🗑 Delete", key=f"del_fac_{f.id}", type="secondary"):
@@ -352,13 +345,37 @@ elif page == "subjects":
                     &nbsp;|&nbsp; Semester: {s.semester}
                 </small>
             </div>""", unsafe_allow_html=True)
-            if st.button("🗑 Delete", key=f"del_sub_{s.id}", type="secondary"):
-                db2 = get_session()
-                try:
-                    crud_subject.delete(db2, s.id)
-                    st.rerun()
-                finally:
-                    db2.close()
+            
+            col_edit, col_del = st.columns([1, 1])
+            with col_edit:
+                with st.popover("✏️ Edit"):
+                    with st.form(f"edit_sub_{s.id}"):
+                        e_name = st.text_input("Name", value=s.name)
+                        e_code = st.text_input("Code", value=s.code)
+                        e_cred = st.number_input("Credits", 1, 10, int(s.credits))
+                        e_hpw  = st.number_input("Hrs/week", 1, 20, int(s.hours_per_week))
+                        e_sem  = st.number_input("Semester", 1, 12, int(s.semester))
+                        e_lab  = st.checkbox("Requires Lab", value=s.requires_lab)
+                        if st.form_submit_button("Save"):
+                            db_edit = get_session()
+                            try:
+                                crud_subject.update(db_edit, s.id, {
+                                    "name": e_name, "code": e_code, "credits": e_cred,
+                                    "hours_per_week": e_hpw, "semester": e_sem, "requires_lab": e_lab
+                                })
+                                st.success("Updated!")
+                                st.rerun()
+                            finally:
+                                db_edit.close()
+
+            with col_del:
+                if st.button("🗑 Delete", key=f"del_sub_{s.id}", type="secondary"):
+                    db2 = get_session()
+                    try:
+                        crud_subject.delete(db2, s.id)
+                        st.rerun()
+                    finally:
+                        db2.close()
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -426,9 +443,6 @@ elif page == "sections":
     st.title("🗂 Sections")
     db = get_session()
     try:
-        from app.crud.base import CRUDBase
-        from app.models.section import Section as SectionModel
-        crud_sec = CRUDBase(SectionModel)
         sections = crud_section.get_all(db)
         subjects = db.query(Subject).all()
         faculty_list = crud_faculty.get_all(db)
@@ -607,9 +621,53 @@ elif page == "generate":
     finally:
         db.close()
 
-    st.markdown("Click **Generate** to run the CSP solver. This may take a few seconds depending on the schedule complexity.")
+    st.markdown("Choose an algorithm and click **Generate** to create a conflict-free timetable.")
 
-    if st.button("⚡ Run CSP Solver", type="primary"):
+    algo_col, btn_col = st.columns([2, 1])
+    with algo_col:
+        algorithm = st.selectbox(
+            "Scheduling Algorithm",
+            ["CSP (Backtracking + AC3)", "Genetic Algorithm"],
+            help="CSP is exact but slower on large inputs. GA is heuristic-based and faster on complex schedules."
+        )
+    algo_key = "csp" if "CSP" in algorithm else "ga"
+
+    with btn_col:
+        st.markdown("<br>", unsafe_allow_html=True)
+        run_clicked = st.button("⚡ Generate Timetable", type="primary")
+
+    if run_clicked:
+        # Step 1: Auto-assign subjects to sections
+        db_auto = get_session()
+        try:
+            from app.auto_assigner import auto_assign
+            num_created, assign_msgs = auto_assign(db_auto)
+            if num_created > 0:
+                st.info(f"🤖 Auto-assigned {num_created} subject-faculty-section mapping(s):")
+                for msg in assign_msgs:
+                    st.caption(msg)
+            elif assign_msgs and any("⚠️" in m for m in assign_msgs):
+                for msg in assign_msgs:
+                    if "⚠️" in msg:
+                        st.warning(msg)
+        except Exception as e:
+            st.warning(f"Auto-assign skipped: {e}")
+        finally:
+            db_auto.close()
+
+        # Step 2: Pre-generation validation
+        db_val = get_session()
+        try:
+            is_valid, val_errors = validate_before_generation(db_val)
+        finally:
+            db_val.close()
+
+        if not is_valid:
+            st.error("❌ Cannot generate timetable. Please fix the following issues:")
+            for ve in val_errors:
+                st.warning(f"⚠️ {ve}")
+            st.stop()
+
         db2 = get_session()
         try:
             gen = TimetableGeneration(status="pending")
@@ -617,13 +675,20 @@ elif page == "generate":
             db2.commit()
             db2.refresh(gen)
             gen_id = gen.id
+        except Exception as e:
+            st.error(f"❌ Could not create generation record: {e}")
+            db2.close()
+            st.stop()
         finally:
             db2.close()
 
-        with st.spinner("🔄 Solving constraint satisfaction problem…"):
+        spinner_msg = "🔄 Running Genetic Algorithm…" if algo_key == "ga" else "🔄 Solving constraint satisfaction problem…"
+        with st.spinner(spinner_msg):
             db3 = get_session()
             try:
-                run_generation(db3, gen_id)
+                run_generation(db3, gen_id, algorithm=algo_key)
+            except Exception as e:
+                st.error(f"❌ Solver crashed: {e}")
             finally:
                 db3.close()
 

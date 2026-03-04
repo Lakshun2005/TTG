@@ -6,14 +6,16 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 # On Streamlit Cloud the app root is read-only; /tmp is writable.
 # Locally, write next to the app file.
 _DB_PATH = os.environ.get("TTG_DB_PATH", os.path.join(os.path.dirname(__file__), "..", "ttg_streamlit.db"))
-DATABASE_URL = f"sqlite:///{os.path.abspath(_DB_PATH)}"
+DATABASE_URL = os.environ.get("DATABASE_URL", f"sqlite:///{os.path.abspath(_DB_PATH)}")
 
 Base = declarative_base()
 
 
 @st.cache_resource
 def get_engine():
-    engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+    # Only use check_same_thread for sqlite
+    connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+    engine = create_engine(DATABASE_URL, connect_args=connect_args)
     return engine
 
 

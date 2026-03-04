@@ -18,3 +18,4 @@ class Subject(Base):
 
     section_subjects = relationship("SectionSubject", back_populates="subject")
     timetable_entries = relationship("TimetableEntry", back_populates="subject")
+    faculty_subjects = relationship("FacultySubject", back_populates="subject", cascade="all, delete-orphan")

@@ -2,6 +2,9 @@ from typing import Generic, TypeVar, Type, Optional, List
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from app.database import Base
+from app.logger import get_logger
+
+logger = get_logger(__name__)
 
 ModelType = TypeVar("ModelType", bound=Base)
 CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
@@ -19,22 +22,42 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         return db.query(self.model).offset(skip).limit(limit).all()
 
     def create(self, db: Session, data: dict) -> ModelType:
-        db_obj = self.model(**data)
-        db.add(db_obj)
-        db.commit()
-        db.refresh(db_obj)
-        return db_obj
+        try:
+            db_obj = self.model(**data)
+            db.add(db_obj)
+            db.commit()
+            db.refresh(db_obj)
+            logger.info(f"Created {self.model.__name__} id={db_obj.id}")
+            return db_obj
+        except Exception as e:
+            db.rollback()
+            logger.error(f"Failed to create {self.model.__name__}: {e}", exc_info=True)
+            raise
 
-    def update(self, db: Session, db_obj: ModelType, data: dict) -> ModelType:
-        for field, value in data.items():
-            setattr(db_obj, field, value)
-        db.commit()
-        db.refresh(db_obj)
-        return db_obj
+    def update(self, db: Session, id: int, data: dict) -> Optional[ModelType]:
+        try:
+            db_obj = self.get(db, id)
+            if db_obj:
+                for field, value in data.items():
+                    setattr(db_obj, field, value)
+                db.commit()
+                db.refresh(db_obj)
+                logger.info(f"Updated {self.model.__name__} id={id}")
+            return db_obj
+        except Exception as e:
+            db.rollback()
+            logger.error(f"Failed to update {self.model.__name__} id={id}: {e}", exc_info=True)
+            raise
 
     def delete(self, db: Session, id: int) -> Optional[ModelType]:
-        obj = db.get(self.model, id)
-        if obj:
-            db.delete(obj)
-            db.commit()
-        return obj
+        try:
+            obj = db.get(self.model, id)
+            if obj:
+                db.delete(obj)
+                db.commit()
+                logger.info(f"Deleted {self.model.__name__} id={id}")
+            return obj
+        except Exception as e:
+            db.rollback()
+            logger.error(f"Failed to delete {self.model.__name__} id={id}: {e}", exc_info=True)
+            raise

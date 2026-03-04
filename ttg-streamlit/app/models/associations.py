@@ -29,3 +29,16 @@ class SectionSubject(Base):
     section = relationship("Section", back_populates="section_subjects")
     subject = relationship("Subject", back_populates="section_subjects")
     faculty = relationship("Faculty", back_populates="section_subjects")
+
+
+class FacultySubject(Base):
+    __tablename__ = "faculty_subjects"
+
+    id = Column(Integer, primary_key=True, index=True)
+    faculty_id = Column(Integer, ForeignKey("faculty.id", ondelete="CASCADE"), nullable=False)
+    subject_id = Column(Integer, ForeignKey("subjects.id", ondelete="CASCADE"), nullable=False)
+
+    __table_args__ = (UniqueConstraint("faculty_id", "subject_id", name="uq_faculty_subject"),)
+
+    faculty = relationship("Faculty", back_populates="faculty_subjects")
+    subject = relationship("Subject", back_populates="faculty_subjects")
