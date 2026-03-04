@@ -196,3 +196,22 @@ sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed
 [2026-03-04 23:41:43] INFO     app.scheduler.timetable_builder — Generation 3e1f22b0 started (algorithm=csp)
 [2026-03-04 23:41:43] INFO     app.scheduler.timetable_builder — CSP solver finished for generation 3e1f22b0
 [2026-03-04 23:41:43] INFO     app.scheduler.timetable_builder — Persisted 4 timetable entries for generation 3e1f22b0
+[2026-03-04 23:45:03] INFO     app.auto_assigner — Auto-assign created 10 assignments
+[2026-03-04 23:45:03] INFO     app.validator — Pre-generation validation passed
+[2026-03-04 23:45:03] INFO     app.scheduler.timetable_builder — Generation e7509d22 started (algorithm=csp)
+[2026-03-04 23:45:03] INFO     app.scheduler.timetable_builder — CSP solver finished for generation e7509d22
+[2026-03-04 23:45:03] INFO     app.scheduler.timetable_builder — Persisted 30 timetable entries for generation e7509d22
+[2026-03-04 23:55:43] INFO     app.auto_assigner — Auto-assign created 0 assignments
+[2026-03-04 23:55:43] INFO     app.validator — Pre-generation validation passed
+[2026-03-04 23:55:43] INFO     app.scheduler.timetable_builder — Generation e5881704 started (algorithm=csp)
+[2026-03-04 23:55:43] INFO     app.scheduler.timetable_builder — CSP solver finished for generation e5881704
+[2026-03-04 23:55:43] INFO     app.scheduler.timetable_builder — Persisted 30 timetable entries for generation e5881704
+[2026-03-04 23:56:10] INFO     app.auto_assigner — Auto-assign created 0 assignments
+[2026-03-04 23:56:10] INFO     app.validator — Pre-generation validation passed
+[2026-03-04 23:56:11] INFO     app.scheduler.timetable_builder — Generation 51314e63 started (algorithm=ga)
+[2026-03-04 23:56:11] INFO     app.scheduler.ga_solver — GA starting: 30 variables, pop=100, gens=500
+[2026-03-04 23:56:11] DEBUG    app.scheduler.ga_solver — GA gen 0: best_fitness=-6720
+[2026-03-04 23:56:11] DEBUG    app.scheduler.ga_solver — GA gen 50: best_fitness=-700
+[2026-03-04 23:56:11] INFO     app.scheduler.ga_solver — GA found valid solution at generation 58 (fitness=300.0)
+[2026-03-04 23:56:11] INFO     app.scheduler.timetable_builder — GA solver finished for generation 51314e63
+[2026-03-04 23:56:11] INFO     app.scheduler.timetable_builder — Persisted 30 timetable entries for generation 51314e63

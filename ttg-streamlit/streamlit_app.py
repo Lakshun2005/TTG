@@ -37,6 +37,9 @@ from app.export.pdf_exporter import generate_section_pdf, generate_faculty_pdf
 from app.export.excel_exporter import generate_full_excel
 from app.validator import validate_before_generation
 
+# ── Ensure DB tables exist (critical on Streamlit Cloud) ─────────────────────
+init_db()
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Page config
 # ──────────────────────────────────────────────────────────────────────────────
